@@ -73,6 +73,7 @@ public class ListaNumeros
     public void vaciarLista() {
         int n = lista.length; 
         lista = new int [n];
+        pos = 0;
     }
 
     /**
@@ -94,7 +95,6 @@ public class ListaNumeros
         } 
         return "";
     }
-
 
     /**
      * Mostrar en pantalla la lista
@@ -134,41 +134,59 @@ public class ListaNumeros
      * 
      */
     public int buscarBinario(int numero) {
-        int cont = 0;
-        for(int i = 0; i < pos; i++){
-            if(numero == lista[i]){
-                cont++;
+        int[] copia = Arrays.copyOf(lista, lista.length);  
+        boolean encontrado = false;
+        int izquierda = 0;
+        int derecha = lista.length - 1;
+        while (izquierda <= derecha && !encontrado) {
+            int mitad = (izquierda + derecha) / 2;
+            if (lista[mitad] == numero) {
+                encontrado = true;
             }
+            else if (lista[mitad] > numero) {
+                derecha = mitad - 1;
+            }
+            else {
+                izquierda = mitad + 1;
+            }
+
+
         }
-
-        return cont;
-
+        int num = copia[0];
+        return num;
     }
-
 
     /**
      * borra el primer elemento de la lista
      */
     public void borrarPrimero() {
-        for(int i = 0; i < pos; i++){
-          lista[i] = lista[i + 1];
+        for(int i = 0; i < pos - 1; i++){
+            lista[i] = lista[i + 1];
         }
-
-        }
-
-        /**
-         *  Invierte cada uno de los grupos de n elementos que hay en lista
-         *  
-         *  Si el nº de elementos en lista no es divisible entre n los elementos restantes 
-         *  quedan igual
-         *  
-         *  (leer enunciado)
-         *  
-         */
-        public void invertir(int n) {
-            
+        pos--;
     }
-   
+
+    /**
+     *  Invierte cada uno de los grupos de n elementos que hay en lista
+     *  
+     *  Si el nº de elementos en lista no es divisible entre n los elementos restantes 
+     *  quedan igual
+     *  
+     *  (leer enunciado)
+     *  
+     */
+    public void invertir(int n) {
+        int[] copia = Arrays.copyOf(lista, lista.length);
+        int veces = pos / n;
+        int pos2 = 0;
+        for(int i = 1; i <= veces; i++){
+            for(int z = pos2; z < n; z++){
+                lista[z] = copia[(pos2 + n - 1) - z];
+            }
+            pos2 += n;
+        }
+    }
+
     /**
      * devuelve un ragged array de 2 dimensiones con tantas filas como valores
      * tenga el atributo lista y rellena el array de la forma indicada
@@ -176,8 +194,13 @@ public class ListaNumeros
      * 
      */
     public int[][] toArray2D() {
-
-        return null;
+        int[][]copia = new int[pos][];
+        for(int fil = 0; fil < pos; fil++){
+            copia[fil] = new int[fil + 1];
+            copia[fil][0] = 1;
+        }
+        
+        return copia;
     }
 
     /**
