@@ -21,8 +21,8 @@ public class ListaNumeros
      * @param n el tamaño máximo de la lista
      */
     public ListaNumeros(int n) {
-         lista = new int [n];
-         pos = 0;
+        lista = new int [n];
+        pos = 0;
     }
 
     /**
@@ -34,12 +34,12 @@ public class ListaNumeros
      */
     public boolean addElemento(int numero) {
         if(pos != lista.length){
-          lista[pos] = numero;
-          pos++;
-        
-        return true;
-    }
-    return false;
+            lista[pos] = numero;
+            pos++;
+
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -47,7 +47,7 @@ public class ListaNumeros
      * Hacer sin if
      */
     public boolean estaCompleta() {
-         return lista.length == pos;
+        return lista.length == pos;
 
     }
 
@@ -56,7 +56,7 @@ public class ListaNumeros
      * Hacer sin if
      */
     public boolean estaVacia() {
-         return pos == 0;
+        return pos == 0;
     }
 
     /**
@@ -71,28 +71,30 @@ public class ListaNumeros
      * Vacía la lista
      */
     public void vaciarLista() {
-         int n = lista.length; 
-         lista = new int [n];
+        int n = lista.length; 
+        lista = new int [n];
     }
-    
-     /**
+
+    /**
      * Representación textual de la lista de la forma indicada 
      * (leer enunciado)
      * 
      * Si la lista está vacía devuelve ""
      */
     public String toString() {
-         for(int i = 0; i < pos; i++){
+        if(pos == 0){
+            return "";
+        }
+        for(int i = 0; i < pos; i++){
             System.out.print(lista[i] + "  ");
-            }
-            System.out.println();
-          for(int i = 0; i < pos; i++){
-              System.out.print(i + "  ");
-            } 
+        }
+        System.out.println();
+        for(int i = 0; i < pos; i++){
+            System.out.print(i + "  ");
+        } 
         return "";
     }
-    
-    
+
 
     /**
      * Mostrar en pantalla la lista
@@ -108,8 +110,15 @@ public class ListaNumeros
      *  
      */
     public int[] buscarPosicionesDe(int numero) {
-         
-        return null;
+        int[] aux = new int[lista.length];
+        int cont = 0;
+        for(int i = 0; i < pos; i++){
+            if(numero == lista[i]){
+                aux[cont] = i;
+                cont++;
+            }
+        }
+        return aux;
 
     }
 
@@ -125,37 +134,41 @@ public class ListaNumeros
      * 
      */
     public int buscarBinario(int numero) {
- 
-        return 0;
+        int cont = 0;
+        for(int i = 0; i < pos; i++){
+            if(numero == lista[i]){
+                cont++;
+            }
+        }
+
+        return cont;
 
     }
 
-   
 
     /**
      * borra el primer elemento de la lista
      */
     public void borrarPrimero() {
-         
+        for(int i = 0; i < pos; i++){
+          lista[i] = lista[i + 1];
+        }
 
+        }
+
+        /**
+         *  Invierte cada uno de los grupos de n elementos que hay en lista
+         *  
+         *  Si el nº de elementos en lista no es divisible entre n los elementos restantes 
+         *  quedan igual
+         *  
+         *  (leer enunciado)
+         *  
+         */
+        public void invertir(int n) {
+            
     }
-    
-     /**
-     *  Invierte cada uno de los grupos de n elementos que hay en lista
-     *  
-     *  Si el nº de elementos en lista no es divisible entre n los elementos restantes 
-     *  quedan igual
-     *  
-     *  (leer enunciado)
-     *  
-     */
-    public void invertir(int n) {
-         
-
-    }
-
    
-  
     /**
      * devuelve un ragged array de 2 dimensiones con tantas filas como valores
      * tenga el atributo lista y rellena el array de la forma indicada
@@ -163,7 +176,7 @@ public class ListaNumeros
      * 
      */
     public int[][] toArray2D() {
-        
+
         return null;
     }
 
@@ -186,7 +199,6 @@ public class ListaNumeros
         System.out.println(lista.toString());
         System.out.println("\t" + numero + " aparece en posiciones ");
         // seguir completando
-         
 
     }
 }
