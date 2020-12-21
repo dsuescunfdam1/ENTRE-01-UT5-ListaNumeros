@@ -11,7 +11,8 @@ import java.util.Arrays;
 public class ListaNumeros 
 {
     // definir atributos
-
+    int lista[];
+    int pos;
     /**
      * Constructor de la clase ListaNumeros 
      * Crea e inicializa adecuadamente los
@@ -20,7 +21,8 @@ public class ListaNumeros
      * @param n el tamaño máximo de la lista
      */
     public ListaNumeros(int n) {
-         
+         lista = new int [n];
+         pos = 0;
     }
 
     /**
@@ -31,10 +33,13 @@ public class ListaNumeros
      * @return true si se ha podido añadir, false en otro caso
      */
     public boolean addElemento(int numero) {
-        
+        if(pos != lista.length){
+          lista[pos] = numero;
+          pos++;
         
         return true;
-
+    }
+    return false;
     }
 
     /**
@@ -42,7 +47,7 @@ public class ListaNumeros
      * Hacer sin if
      */
     public boolean estaCompleta() {
-         return true;
+         return lista.length == pos;
 
     }
 
@@ -51,14 +56,14 @@ public class ListaNumeros
      * Hacer sin if
      */
     public boolean estaVacia() {
-         return true;
+         return pos == 0;
     }
 
     /**
      * devuelve el nº de elementos realmente guardados en la lista
      */
     public int getTotalNumeros() {
-        return 0;
+        return pos;
 
     }
 
@@ -66,7 +71,8 @@ public class ListaNumeros
      * Vacía la lista
      */
     public void vaciarLista() {
-         
+         int n = lista.length; 
+         lista = new int [n];
     }
     
      /**
@@ -76,7 +82,13 @@ public class ListaNumeros
      * Si la lista está vacía devuelve ""
      */
     public String toString() {
-         
+         for(int i = 0; i < pos; i++){
+            System.out.print(lista[i] + "  ");
+            }
+            System.out.println();
+          for(int i = 0; i < pos; i++){
+              System.out.print(i + "  ");
+            } 
         return "";
     }
     
